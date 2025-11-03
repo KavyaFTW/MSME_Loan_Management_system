@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin & Settings - MSME-LMS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">MSME-LMS</div>
+            <div class="tagline">Loan Management System</div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="{{ url_for('admin_dashboard') }}"><i class="fas fa-th-large"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('customers') }}"><i class="fas fa-users"></i> Customers</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('loans') }}"><i class="fas fa-hand-holding-usd"></i> Loans</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('payments') }}"><i class="fas fa-money-check-alt"></i> Payments</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('reports') }}"><i class="fas fa-chart-line"></i> Reports</a>
+            </li>
+            <li class="nav-item active">
+                <a href="{{ url_for('admin_settings') }}"><i class="fas fa-cog"></i> Admin & Settings</a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-name">{{ session.get('username', 'Demo User') }}</div>
+                <div class="user-role">{{ session.get('role', 'Admin') | capitalize }}</div>
+            </div>
+            <a href="{{ url_for('logout') }}" class="logout-icon"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="navbar">
+            <h1 class="page-title">Admin & Settings</h1>
+            <div class="theme-switcher">
+                <i class="fas fa-moon"></i>
+            </div>
+        </header>
+
+        <div class="settings-container">
+            <div class="settings-tabs">
+                <button class="tab-link" data-tab="users">
+                    <i class="fas fa-user-cog"></i> User Management
+                </button>
+            </div>
+
+            <div class="settings-content">
+                <div id="users" class="tab-panel active">
+                    <h2>User Management</h2>
+                    <div class="page-actions" style="margin-bottom: 20px;">
+                        <input type="text" placeholder="Search users..." class="search-bar">
+                        <button class="btn btn-primary"><i class="fas fa-user-plus"></i> Add User</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Demo User</td>
+                                <td>admin@msme-lms.com</td>
+                                <td>Admin</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <button class="action-btn edit" title="Edit"><i class="fas fa-pen"></i></button>
+                                    <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jane Doe</td>
+                                <td>jane.doe@example.com</td>
+                                <td>Loan Officer</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <button class="action-btn edit" title="Edit"><i class="fas fa-pen"></i></button>
+                                    <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

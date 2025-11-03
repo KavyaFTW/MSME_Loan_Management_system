@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - MSME-LMS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">MSME-LMS</div>
+            <div class="tagline">Loan Management System</div>
+        </div>
+        <ul class="nav-menu">
+            {% if session.get('role') == 'admin' %}
+            <li class="nav-item">
+                <a href="{{ url_for('admin_dashboard') }}"><i class="fas fa-th-large"></i> Dashboard</a>
+            </li>
+            {% endif %}
+            {% if session.get('role') == 'owner' or session.get('role') == 'lender'%}
+            <li class="nav-item">
+                <a href="{{ url_for('user_dashboard') }}"><i class="fas fa-th-large"></i> Dashboard</a>
+            </li>
+            {% endif %}
+            {% if session.get('role') == 'admin' %}
+            <li class="nav-item">
+                <a href="{{ url_for('customers') }}"><i class="fas fa-users"></i> Customers</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <a href="{{ url_for('loans') }}"><i class="fas fa-hand-holding-usd"></i> Loans</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('payments') }}"><i class="fas fa-money-check-alt"></i> Payments</a>
+            </li>
+            <li class="nav-item active">
+                <a href="{{ url_for('reports') }}"><i class="fas fa-chart-line"></i> Reports</a>
+            </li>
+            {% if session.get('role') == 'admin' %}
+            <li class="nav-item">
+                <a href="{{ url_for('admin_settings') }}"><i class="fas fa-cog"></i> Admin & Settings</a>
+            </li>
+            {% endif %}
+        </ul>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-name">{{ session.get('username', 'Demo User') }}</div>
+                <div class="user-role">{{ session.get('role', 'Admin') | capitalize }}</div>
+            </div>
+            <a href="{{ url_for('logout') }}" class="logout-icon"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="navbar">
+            <h1 class="page-title">Reports</h1>
+            <div class="theme-switcher">
+                <i class="fas fa-moon"></i>
+            </div>
+        </header>
+
+        <div class="page-actions">
+            <div class="filter-group">
+                <label for="start-date">From:</label>
+                <input type="date" id="start-date" class="date-filter">
+                <label for="end-date">To:</label>
+                <input type="date" id="end-date" class="date-filter">
+                <button class="btn btn-secondary">Apply</button>
+            </div>
+        </div>
+
+        <div class="dashboard-charts">
+            
+            <div class="chart-panel">
+                <h2>Payment Collection Over Time</h2>
+                <canvas id="paymentsChart"></canvas>
+            </div>
+            
+            <div class="chart-panel">
+                <h2>Loan Disbursement Over Time</h2>
+                <canvas id="disbursementsChart"></canvas>
+            </div>
+            
+            <div class="chart-panel">
+                <h2>Loan Distribution by Status</h2>
+                <canvas id="statusChart"></canvas>
+            </div>
+            
+            <div class="chart-panel">
+                <h2>Loan Distribution by Sector</h2>
+                <canvas id="sectorChart"></canvas>
+            </div>
+
+        
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        window.reportsData = {
+            status: {{ status_data | tojson | safe }},
+            sector: {{ sector_data | tojson | safe }},
+            payments: {{ payments_data | tojson | safe }},
+            disbursements: {{ disbursements_data | tojson | safe }}
+        };
+    </script>
+    <script src="{{ url_for('static', filename='reports-charts.js') }}"></script>
+</body>
+</html>

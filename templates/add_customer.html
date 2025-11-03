@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Customer - MSME-LMS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">MSME-LMS</div>
+            <div class="tagline">Loan Management System</div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="{{ url_for('admin_dashboard') }}"><i class="fas fa-th-large"></i> Dashboard</a>
+            </li>
+            <li class="nav-item active">
+                <a href="{{ url_for('customers') }}"><i class="fas fa-users"></i> Customers</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('loans') }}"><i class="fas fa-hand-holding-usd"></i> Loans</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('payments') }}"><i class="fas fa-money-check-alt"></i> Payments</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('reports') }}"><i class="fas fa-chart-line"></i> Reports</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('admin_settings') }}"><i class="fas fa-cog"></i> Admin & Settings</a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-name">{{ session.get('username', 'Demo User') }}</div>
+                <div class="user-role">{{ session.get('role', 'Admin') | capitalize }}</div>
+            </div>
+            <a href="{{ url_for('logout') }}" class="logout-icon" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="navbar">
+            <h1 class="page-title">Add New Customer</h1>
+            <div class="theme-switcher">
+                <i class="fas fa-moon"></i>
+            </div>
+        </header>
+
+        <div class="content-panel">
+            <form action="{{ url_for('add_customer') }}" method="POST" class="settings-form">
+                <h2>Owner Details (Users Table)</h2>
+                <div class="form-group">
+                    <label for="user_id">User ID (Manual)</label>
+                    <input type="number" id="user_id" name="user_id" placeholder="e.g., 92" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Owner Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="aadhar_no">Aadhar No</label>
+                    <input type="text" id="aadhar_no" name="aadhar_no" required>
+                </div>
+
+                <hr style="margin: 20px 0;">
+
+                <h2>Business Details (MSME_Profile Table)</h2>
+                <div class="form-group">
+                    <label for="msme_id">MSME ID (Manual)</label>
+                    <input type="number" id="msme_id" name="msme_id" placeholder="e.g., 61" required>
+                </div>
+                <div class="form-group">
+                    <label for="business_name">Business Name</label>
+                    <input type="text" id="business_name" name="business_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg_no">Registration No</label>
+                    <input type="text" id="reg_no" name="reg_no">
+                </div>
+                <div class="form-group">
+                    <label for="udyam_no">Udyam No</label>
+                    <input type="text" id="udyam_no" name="udyam_no">
+                </div>
+                <div class="form-group">
+                    <label for="sector">Sector</label>
+                    <input type="text" id="sector" name="sector" required>
+                </div>
+                <div class="form-group">
+                    <label for="turnover">Annual Turnover</label>
+                    <input type="number" step="0.01" id="turnover" name="turnover">
+                </div>
+                <div class="form-group">
+                    <label for="years">Years Operating</label>
+                    <input type="number" id="years" name="years">
+                </div>
+                <div class="form-group">
+                    <label for="pan_no">PAN No</label>
+                    <input type="text" id="pan_no" name="pan_no">
+                </div>
+                <div class="form-group">
+                    <label for="address">Business Address</label>
+                    <input type="text" id="address" name="address">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save Customer</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

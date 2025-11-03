@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers - MSME-LMS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">MSME-LMS</div>
+            <div class="tagline">Loan Management System</div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="{{ url_for('admin_dashboard') }}"><i class="fas fa-th-large"></i> Dashboard</a>
+            </li>
+            <li class="nav-item active">
+                <a href="{{ url_for('customers') }}"><i class="fas fa-users"></i> Customers</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('loans') }}"><i class="fas fa-hand-holding-usd"></i> Loans</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('payments') }}"><i class="fas fa-money-check-alt"></i> Payments</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('reports') }}"><i class="fas fa-chart-line"></i> Reports</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url_for('admin_settings') }}"><i class="fas fa-cog"></i> Admin & Settings</a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-name">{{ session.get('username', 'Demo User') }}</div>
+                <div class="user-role">{{ session.get('role', 'Admin') | capitalize }}</div>
+            </div>
+            <a href="{{ url_for('logout') }}" class="logout-icon"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header class="navbar">
+            <h1 class="page-title">Customers</h1>
+            <div class="theme-switcher">
+                <i class="fas fa-moon"></i>
+            </div>
+        </header>
+
+        <div class="page-actions">
+            
+            <form action="{{ url_for('customers') }}" method="GET" class="filter-form">
+                
+                <div class="filter-grid">
+
+                    <div class="filter-grid-item">
+                        <label for="customer_id">Customer ID</label>
+                        <input type="text" name="customer_id" id="customer_id" placeholder="Search by Customer ID..." value="{{ search_customer_id or '' }}">
+                    </div>
+
+                    <div class="filter-grid-item">
+                        <label for="owner_name">Owner Name</label>
+                        <input type="text" name="owner_name" id="owner_name" placeholder="Search by Owner..." value="{{ search_owner_name or '' }}">
+                    </div>
+
+                    <div class="filter-grid-item">
+                        <label for="business_name">Business Name</label>
+                        <input type="text" name="business_name" id="business_name" placeholder="Search by Business..." value="{{ search_business_name or '' }}">
+                    </div>
+                    
+                    <div class="filter-grid-item">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" placeholder="Search by Email..." value="{{ search_email or '' }}">
+                    </div>
+                    
+                    <div class="filter-grid-item">
+                        <label for="sector">Sector</label>
+                        <input type="text" name="sector" id="sector" placeholder="Search by Sector..." value="{{ search_sector or '' }}">
+                    </div>
+                </div>
+                
+                <div class="filter-buttons">
+                    <button type="submit" class="btn btn-secondary">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                    <button class="btn btn-primary" type="button" onclick="window.location.href='{{ url_for('add_customer') }}'">
+                        <i class="fas fa-plus"></i> Add New Customer
+                    </button>
+                </div>
+                
+            </form>
+
+        </div>
+
+        <div class="content-panel">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>MSME Profile</th>
+                        <th>Owner Name</th>
+                        <th>Business Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Sector</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                    <tr>
+                        <td>CUST-{{ customer.user_id }}</td>
+                        <td>{{ customer.owner_name }}</td>
+                        <td>{{ customer.Business_Name }}</td>
+                        <td>{{ customer.Email }}</td>
+                        <td>{{ customer.Phone }}</td>
+                        <td>{{ customer.Sector }}</td>
+                        <td>
+                            <button class="action-btn view" title="View"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit" title="Edit"><i class="fas fa-pen"></i></button>
+                            <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7" style="text-align: center;">No customers found.</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+        </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

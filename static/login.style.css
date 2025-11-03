@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Define colors directly since this is a standalone page */
+:root {
+    --primary-color: #007bff;
+    --background-color: #f8f9fa;
+    --surface-color: #ffffff;
+    --text-color: #343a40;
+    --text-light-color: #6c757d;
+    --border-color: #dee2e6;
+    --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+body.dark-mode {
+    --background-color: #22272e;
+    --surface-color: #2d333b;
+    --text-color: #adbac7;
+    --text-light-color: #768390;
+    --border-color: #444c56;
+    --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.login-box {
+    background-color: var(--surface-color);
+    padding: 40px 35px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    width: 400px;
+    max-width: 90%;
+    border-top: 5px solid var(--primary-color);
+}
+
+.login-box h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.login-box .subtitle {
+    font-size: 15px;
+    color: var(--text-light-color);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.input-group input,
+.input-group select {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+.login-btn:hover {
+    background-color: #0069d9;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 0;
+    display: none; /* Hidden by default */
+}

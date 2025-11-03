@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MSME-LMS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.style.css') }}">
+</head>
+<body>
+    <div class="login-box">
+        <h1>MSME-LMS</h1>
+        <p class="subtitle">Welcome back! Please log in to your account.</p>
+        
+        <form id="login-form" action="/login" method="POST">
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="input-group">
+                <label for="role">Role</label>
+                <select id="role" name="role"required>
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="admin">Admin</option>
+                    <option value="owner">Owner</option>
+                    <option value="lender">Lender</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+            
+            <p id="error-message" class="error-message"></p>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='login.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,795 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --surface-color: #ffffff;
+    --text-color: #343a40;
+    --text-light-color: #6c757d;
+    --border-color: #dee2e6;
+    --hover-bg: #e9ecef;
+    --active-bg: #e0f2fe;
+    --active-text: #007bff;
+    --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: var(--surface-color);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar-header {
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.sidebar-header .logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.sidebar-header .tagline {
+    font-size: 14px;
+    color: var(--text-light-color);
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.nav-item {
+    margin-bottom: 5px;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    margin: 0 10px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-item a i {
+    margin-right: 15px;
+    font-size: 18px;
+    color: var(--text-light-color);
+}
+
+.nav-item a:hover {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+.nav-item.active a {
+    background-color: var(--active-bg);
+    color: var(--active-text);
+    font-weight: 600;
+}
+
+.nav-item.active a i {
+    color: var(--active-text);
+}
+
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.sidebar-footer .user-info {
+    flex-grow: 1;
+}
+
+.sidebar-footer .user-name {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.sidebar-footer .user-role {
+    font-size: 13px;
+    color: var(--text-light-color);
+}
+
+.sidebar-footer .logout-icon {
+    font-size: 20px;
+    color: var(--text-light-color);
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar-footer .logout-icon:hover {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: var(--surface-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.theme-switcher {
+    font-size: 22px;
+    color: var(--text-light-color);
+    cursor: pointer;
+}
+
+/* Dashboard Cards */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: var(--surface-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #fff;
+}
+
+.card-icon.bag {
+    background-color: #6c757d; /* Grey from image */
+}
+.card-icon.dollar {
+    background-color: var(--primary-color); /* Blue from image */
+}
+.card-icon.check {
+    background-color: #28a745; /* Green from image */
+}
+
+
+.card-content .value {
+    font-size: 28px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.card-content .value .percentage {
+    font-size: 16px;
+    font-weight: 400;
+    color: #dc3545; /* Red for 0% */
+    margin-left: 5px;
+}
+
+.card-content .label {
+    font-size: 14px;
+    color: var(--text-light-color);
+}
+
+/* Dashboard Charts */
+.dashboard-charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.chart-panel {
+    background-color: var(--surface-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    min-height: 300px; /* Placeholder height */
+}
+
+.chart-panel h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Dark Mode (Basic) */
+body.dark-mode {
+    --background-color: #22272e;
+    --surface-color: #2d333b;
+    --text-color: #adbac7;
+    --text-light-color: #768390;
+    --border-color: #444c56;
+    --hover-bg: #3d444e;
+    --active-bg: #3a4b64;
+    --shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .sidebar {
+    border-right-color: var(--border-color);
+}
+
+.dark-mode .nav-item a i {
+    color: var(--text-light-color);
+}
+
+.dark-mode .nav-item.active a {
+    color: var(--active-text);
+}
+
+.dark-mode .nav-item.active a i {
+    color: var(--active-text);
+}
+
+.dark-mode .sidebar-footer .logout-icon {
+    color: var(--text-light-color);
+}
+
+.dark-mode .theme-switcher i {
+    color: var(--text-light-color);
+}
+
+/* Add this to your style.css */
+
+/* Page Actions (Search Bar & Button) */
+.page-actions {
+    display: flex;
+    flex-direction: column; /* Stack form and buttons vertically */
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: var(--surface-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+/* This creates the responsive grid for search inputs */
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.filter-grid-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-grid-item label {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--text-light-color);
+}
+
+/* Style for the new inputs and select dropdown */
+.filter-grid-item input[type="text"],
+.filter-grid-item select {
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif; /* Ensure font consistency */
+}
+
+.filter-grid-item input:focus,
+.filter-grid-item select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--active-bg);
+}
+
+.dark-mode .filter-grid-item input[type="text"],
+.dark-mode .filter-grid-item select {
+    background-color: var(--background-color);
+}
+
+/* Container for the buttons */
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+    align-items: center;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+
+.search-bar {
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    width: 350px;
+    max-width: 100%;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--active-bg);
+}
+
+.dark-mode .search-bar {
+    background-color: var(--background-color);
+}
+
+/* General Purpose Button */
+.btn {
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+/* Content Panel (replaces chart-panel) */
+.content-panel {
+    background-color: var(--surface-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow-x: auto; /* Makes table scroll horizontally on small screens */
+}
+
+/* Data Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* Ensures table looks good even if it needs to scroll */
+}
+
+.data-table th,
+.data-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+.data-table th {
+    font-weight: 600;
+    color: var(--text-light-color);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-badge.status-active {
+    background-color: #d1f3e0;
+    color: #0d6833;
+}
+
+.status-badge.status-inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.dark-mode .status-badge.status-active {
+    background-color: #0d6833;
+    color: #d1f3e0;
+}
+
+.dark-mode .status-badge.status-inactive {
+    background-color: #721c24;
+    color: #f8d7da;
+}
+
+/* Add this to your style.css, inside or near the other status-badge styles */
+
+.status-badge.status-pending {
+    background-color: #fff3cd;
+    color: #664d03;
+}
+.status-badge.status-approved {
+    background-color: #cff4fc;
+    color: #055160;
+}
+.status-badge.status-disbursed {
+    background-color: #d1f3e0; /* Same as active */
+    color: #0d6833;
+}
+.status-badge.status-repaid {
+    background-color: #e2e3e5;
+    color: #41464b;
+}
+.status-badge.status-completed {
+    background-color: #d1f3e0; /* Same as active/disbursed */
+    color: #0d6833;
+}
+
+.status-badge.status-failed {
+    background-color: #f8d7da; /* Same as inactive */
+    color: #721c24;
+}
+
+/* Dark mode equivalents */
+.dark-mode .status-badge.status-pending {
+    background-color: #664d03;
+    color: #fff3cd;
+}
+.dark-mode .status-badge.status-approved {
+    background-color: #055160;
+    color: #cff4fc;
+}
+.dark-mode .status-badge.status-disbursed {
+    background-color: #0d6833;
+    color: #d1f3e0;
+}
+.dark-mode .status-badge.status-repaid {
+    background-color: #41464b;
+    color: #e2e3e5;
+}
+
+/* Dark mode equivalents */
+.dark-mode .status-badge.status-completed {
+    background-color: #0d6833;
+    color: #d1f3e0;
+}
+
+.dark-mode .status-badge.status-failed {
+    background-color: #721c24;
+    color: #f8d7da;
+}
+
+/* Action Buttons (in table) */
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 17px;
+    padding: 8px;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    margin-right: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    color: var(--text-light-color);
+}
+/* Add this to your style.css */
+
+/* Report Filters */
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Allow filters to wrap on small screens */
+}
+
+.filter-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-light-color);
+}
+
+.date-filter {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: var(--surface-color);
+    color: var(--text-color);
+}
+
+.date-filter:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--active-bg);
+}
+
+.dark-mode .date-filter {
+    background-color: var(--background-color);
+}
+
+/* Secondary Button Style */
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Placeholder for Charts */
+.placeholder-chart {
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--hover-bg);
+    border-radius: 8px;
+    color: var(--text-light-color);
+    font-style: italic;
+    font-size: 15px;
+    margin-top: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Ensure dashboard-charts grid (from admin_dashboard.html) works */
+.dashboard-charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    margin-top: 20px; /* Add margin to separate from actions */
+}
+
+/* Ensure chart-panel (from admin_dashboard.html) works */
+.chart-panel {
+    background-color: var(--surface-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    min-height: 300px;
+}
+
+.chart-panel h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Add this to your style.css */
+
+/* Settings Page Layout */
+.settings-container {
+    display: flex;
+    gap: 20px;
+}
+
+.settings-tabs {
+    flex-basis: 200px;
+    flex-shrink: 0;
+    background-color: var(--surface-color);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: var(--shadow);
+    align-self: flex-start; /* Aligns to the top */
+}
+
+.tab-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    background-color: transparent;
+    color: var(--text-color);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tab-link:hover {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+.tab-link.active {
+    background-color: var(--active-bg);
+    color: var(--active-text);
+    font-weight: 600;
+}
+
+.tab-link.active i {
+    color: var(--active-text);
+}
+
+.tab-link i {
+    font-size: 16px;
+    color: var(--text-light-color);
+}
+
+
+.settings-content {
+    flex-grow: 1;
+}
+
+.tab-panel {
+    display: none; /* Hidden by default */
+    background-color: var(--surface-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.tab-panel.active {
+    display: block; /* Shown when active */
+}
+
+.tab-panel h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Settings Forms */
+.settings-form {
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box; /* Important for padding */
+    background-color: var(--surface-color);
+    color: var(--text-color);
+}
+
+.dark-mode .form-group input[type="text"],
+.dark-mode .form-group input[type="email"],
+.dark-mode .form-group input[type="password"],
+.dark-mode .form-group select {
+    background-color: var(--background-color);
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--active-bg);
+}
+
+/* Responsive layout for settings */
+@media (max-width: 992px) {
+    .settings-container {
+        flex-direction: column;
+    }
+    .settings-tabs {
+        flex-basis: auto;
+        display: flex;
+        overflow-x: auto; /* Make tabs scrollable on mobile */
+    }
+    .tab-link {
+        width: auto;
+        white-space: nowrap;
+    }
+}
+
+.action-btn.view:hover { color: var(--primary-color); background-color: var(--active-bg); }
+.action-btn.edit:hover { color: #ffc107; background-color: #fff9e6; }
+.action-btn.delete:hover { color: #dc3545; background-color: #fdeeee; }
+
+.dark-mode .action-btn.edit:hover { background-color: #4d3c11; }
+.dark-mode .action-btn.delete:hover { background-color: #4a1c20; }
+
+/* --- ADDED FOR SEARCH BARS --- */
+.search-form {
+    display: flex; /* Lines up search bar and button */
+    gap: 10px;      /* Adds space between them */
+    flex-grow: 1;   /* Makes the form take up available space */
+}
+
+.search-form .search-bar {
+    flex-grow: 1; /* Makes the search bar itself grow */
+}
+/* --- ADDED FOR PAYMENTS PAGE --- */
+
+.status-badge.status-paid {
+    background-color: #d1f3e0; /* green */
+    color: #0d6833;
+}
+
+.dark-mode .status-badge.status-paid {
+    background-color: #0d6833;
+    color: #d1f3e0;
+}
